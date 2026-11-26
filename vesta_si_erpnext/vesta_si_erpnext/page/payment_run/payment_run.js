@@ -112,7 +112,12 @@ frappe.payment_run = {
 				var parent = page.main.find(".purchase_invoice_table").empty();
 				if (r.message.invoices.length > 0) {
 					$(frappe.render_template('purchase_invoice_table', r.message)).appendTo(parent);
-					document.getElementById('selectedCountDisplay').innerText = `0 / ${r.message.invoices.length}`;
+					//document.getElementById('selectedCountDisplay').innerText = `0 / ${r.message.invoices.length}`;
+
+					parent.find('.inputcheck').on('change', getfindSelected);
+					parent.find('.selectall').on('change', selectunselect);
+					getfindSelected();
+					
 				} else {
 					$('<p class="text-muted">' + __("No payment entries to be paid found with status draft") + '</p>').appendTo(parent);
 				}

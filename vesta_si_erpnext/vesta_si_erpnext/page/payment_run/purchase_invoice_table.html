@@ -1,7 +1,8 @@
 <table class="table">
     <thead>
         <tr>
-            <th><input type="checkbox" class="selectall" onclick="selectunselect()"></th>
+            <!-- <th><input type="checkbox" class="selectall" onclick="selectunselect()"></th> -->
+            <th><input type="checkbox" class="selectall"></th>
             <th>{{ __("Status") }}</th>
             <th>{{ __("Purchase Invoice") }}</th>
             <th>{{ __("Supplier Name") }}</th>
@@ -20,7 +21,8 @@
         {% for row in invoices %}
         <tr>
             {% if row.workflow_state != "Blocked" %}
-            <td class="ontop onbottom"><input class="inputcheck" type="checkbox" id="chk{{ row.name }}" name="{{ row.name }}" onclick=getfindSelected()></td>
+            <!-- <td class="ontop onbottom"><input class="inputcheck" type="checkbox" id="chk{{ row.name }}" name="{{ row.name }}" onclick=getfindSelected()></td> -->
+            <td class="ontop onbottom"><input class="inputcheck" type="checkbox" id="chk{{ row.name }}" name="{{ row.name }}"></td>
             <td class="ontop onbottom"><p>{{ row.workflow_state }}</p></td>
             <td class="ontop onbottom"><p><a href="/desk/Form/Purchase Invoice/{{ row.name }}">{{ row.name }}</a></p></td>
             <td class="ontop onbottom" width="20%"><p><a href="/desk/Form/Supplier/{{ row.supplier }}">{{ row.supplier_name }}</a></p></td>
