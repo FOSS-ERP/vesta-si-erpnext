@@ -27,7 +27,6 @@ frappe.pages['payment-export'].on_page_load = function(wrapper) {
         options:"Domestic (Swedish) Payments (SEK)\nSEPA (EUR)\nCross Border Payments (USD)\nCross Border Payments (EUR)\nCross Border Payments (OTHER)",
         onchange: () => {
             frappe.payment_export.run(page);
-            getfindSelected()
             togglebankaccount(page)
         }
     });
@@ -43,7 +42,6 @@ frappe.pages['payment-export'].on_page_load = function(wrapper) {
         },
     });
     frappe.payment_export.run(page);
-    getfindSelected()
 }
 
 frappe.payment_export = {
@@ -166,7 +164,11 @@ frappe.payment_export = {
                 if (r.message) {
                     var parent = page.main.find(".payment-table").empty();
                     if (r.message.payments.length > 0) {
+                        //$(frappe.render_template('payment_export_table', r.message)).appendTo(parent);
                         $(frappe.render_template('payment_export_table', r.message)).appendTo(parent);
+                        parent.find('.inputcheck').on('change', getfindSelected);
+                        parent.find('.selectall').on('change', selectunselect);
+                        getfindSelected();
                     } else {
                         $('<p class="text-muted">' + __("No payment entries to be paid found with status draft") + '</p>').appendTo(parent);
                     }
